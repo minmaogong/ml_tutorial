@@ -38,6 +38,7 @@ model.fit(X_train, y_train) # 使用训练数据拟合模型，fit()方法接受
 # 打印训练好的模型参数
 print("斜率：", model.coef_) # 打印模型的系数，model.coef_属性包含了线性回归模型的系数，即每个特征对目标变量的影响程度
 print("截距：", model.intercept_) # 打印模型的截距，model.intercept_属性包含了线性回归模型的截距，即当所有特征值为0时，目标变量的预测值
+print("决定系数：", model.score(X_test, y_test)) # 打印模型的决定系数，model.score()方法接受测试数据X_test和y_test作为输入，返回模型在测试数据上的R²分数，R²分数是评估回归模型性能的指标，值越接近1表示模型的预测能力越好
 
 # 测试（预测）
 y_pred = model.predict(X_test) # 使用测试数据进行预测，predict()方法接受测试数据X_test作为输入，返回模型对测试数据的预测结果y_pred
@@ -74,6 +75,8 @@ ax[1].plot(X, model.predict(poly.transform(X)), color='r') # 在第一个子图�
 ax[1].text(-3, 1, f"测试误差: {test_loss:.4f}")
 ax[1].text(-3, 1.3, f"训练误差: {train_loss:.4f}")
 
+print("决定系数：", model.score(x_test2, y_test))
+
 # 4.3 过拟合--20次多项式
 # 特征工程：转换为20次多项式特征
 poly = PolynomialFeatures(degree=20) # 创建一个多项式特征生成器对象，degree=20表示生成5次多项式特征，interaction_only=False表示生成所有的多项式特征（包括交互特征），include_bias=False表示不包含偏置项（常数项）
@@ -95,4 +98,7 @@ train_loss = mean_squared_error(y_train, model.predict(x_train3)) # 计算训练
 ax[2].plot(X, model.predict(poly.transform(X)), color='r') # 在第一个子图上绘制拟合曲线，X是自变量，model.predict(X)是模型对X的预测结果，color='r'设置线条颜色为红色
 ax[2].text(-3, 1, f"测试误差: {test_loss:.4f}")
 ax[2].text(-3, 1.3, f"训练误差: {train_loss:.4f}")
+
+print("决定系数：", model.score(x_test3, y_test))
+
 plt.show()
