@@ -22,3 +22,11 @@ y_pred = model.predict(x_test)
 # 6. 生成评估报告
 report = classification_report(y_true=y_test, y_pred=y_pred)
 print(report)
+
+
+# ROC-AUC
+from sklearn.metrics import roc_auc_score
+y_proba = model.predict_proba(x_test)[:, 1] # 预测概率，返回一个二维数组，每行包含两个元素，分别表示样本属于每个类别的概率；我们取第二列（[:, 1]）来获取样本属于正类（类别1）的概率。
+print(y_proba)
+auc = roc_auc_score(y_true=y_test, y_score=y_proba)
+
