@@ -52,7 +52,7 @@ print(x_train.shape, x_test.shape)
 knn = KNeighborsClassifier()
 
 # 定义参数网格
-grid = {"n_neighbors": list(range(1, 11)), "p": [1, 2]} # p=1: 欧式距离，p=2: 曼哈顿距离
+grid = {"n_neighbors": list(range(1, 11)), "p": [1, 2], "weights": ["uniform", "distance"]} # p=1: 曼哈顿距离，p=2: 欧式距离 weight："uniform": 所有点的权重相同，"distance": 距离越近的点权重越大
 models = GridSearchCV(estimator=knn, param_grid=grid, cv=10) # cv: K折交叉验证，默认是5折，这里设置为10折
 
 # 6. 训练所有模型
