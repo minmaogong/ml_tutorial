@@ -27,11 +27,12 @@ x_train = scaler.fit_transform(x_train) # 训练集归一化
 x_test = scaler.transform(x_test) # 测试集归一化
 
 # 4. 模型训练
-model = LogisticRegression() # 这是一个0-9的多分类任务，LogisticRegression会自动使用softmax回归函数来处理多分类问题
+model = LogisticRegression(max_iter=500) # 这是一个0-9的多分类任务，LogisticRegression会自动使用softmax回归函数来处理多分类问题
 model.fit(x_train, y_train)
 
 # 5. 模型评估
-model.score(x_test, y_test) # 计算模型在测试集上的准确率
+score = model.score(x_test, y_test) # 计算模型在测试集上的准确率
+print("模型在测试集上的准确率为：", score)
 
 # 6. 模型预测
 plt.imshow(digit.iloc[123, 1:].values.reshape(28, 28), cmap='gray') # 显示第 124 个样本的手写数字图片
