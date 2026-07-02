@@ -11,7 +11,7 @@ from sklearn.linear_model import LogisticRegression # 逻辑回归模型
 # 1. 加载数据集
 digit = pd.read_csv("../data/train.csv")
 print(digit.shape)
-# 用灰度图显示这张手写数字图片。 digit.iloc[10, 1:] -> DataFrame digit.iloc[10, 1:].values -> ndarray
+# 用灰度图显示这张手写数字图片。 digit.iloc[10, 1:] -> DataFrame digit.iloc[10, 1:].values -> ndarray 。 cmap: 颜色映射表，gray: 灰度图
 plt.imshow(digit.iloc[10, 1:].values.reshape(28, 28), cmap='gray') # digit.iloc[10:, 1:] 10: 第11行 1: 从第2列多最后一列 取第 11 个样本的 784 个像素值 reshape(28, 28) 把一维的 784 个像素值变成 28 x 28 的二维图片矩阵
 plt.show()
 
