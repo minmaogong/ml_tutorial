@@ -30,7 +30,7 @@ if __name__ == '__main__':
 
     # 1. 与门
     w = np.array([0.5, 0.5]) # 权重向量
-    b = -0,7 # 偏置
+    b = -0.7 # 偏置
     and_gate = Perceptron(w=w, b=b)
     print("与门输出结果：")
     print(and_gate.predict(x=x1))  # 0
