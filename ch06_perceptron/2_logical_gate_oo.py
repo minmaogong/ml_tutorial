@@ -20,6 +20,19 @@ class Perceptron:
         else:
             return 1
 
+# 定义异或门类 - 通过多层感知机解决非线性划分问题 -> (与非门 + 或门) + 与门 = 异或门
+class XOR_Gate:
+    def __init__(self, and_gate, nand_gate, or_gate):
+        self.and_gate = and_gate
+        self.nand_gate = nand_gate
+        self.or_gate = or_gate
+
+    def predict(self, x):
+        nand_output = self.nand_gate.predict(x)
+        or_output = self.or_gate.predict(x)
+        and_output = self.and_gate.predict(np.array([nand_output, or_output]))
+        return and_output
+
 
 if __name__ == '__main__':
     # 定义输入向量x
@@ -57,3 +70,12 @@ if __name__ == '__main__':
     print(or_gate.predict(x=x2))
     print(or_gate.predict(x=x3))
     print(or_gate.predict(x=x4))
+
+    # 4. 异或门
+    xor_gate = XOR_Gate(and_gate=and_gate, nand_gate=nand_gate, or_gate=or_gate)
+    print("异或门输出结果：")
+    print(xor_gate.predict(x=x1))
+    print(xor_gate.predict(x=x2))
+    print(xor_gate.predict(x=x3))
+    print(xor_gate.predict(x=x4))
+
